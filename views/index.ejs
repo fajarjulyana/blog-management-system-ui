@@ -1,0 +1,19 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Halaman Beranda</title>
+</head>
+<body>
+  <h1>Selamat datang di Blog Sederhana</h1>
+  <h2>Daftar Posting:</h2>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <h3><%= post.title %></h3>
+        <p><%= post.content %></p>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>

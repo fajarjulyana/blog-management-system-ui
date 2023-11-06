@@ -1,0 +1,14 @@
+<!-- views/delete-post.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hapus Posting</title>
+</head>
+<body>
+  <h1>Hapus Posting</h1>
+  <p>Apakah Anda yakin ingin menghapus posting ini?</p>
+  <form action="/dashboard/posts/delete/<%= post.id %>" method="post">
+    <button type="submit">Hapus</button>
+  </form>
+</body>
+</html>

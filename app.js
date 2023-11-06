@@ -52,6 +52,70 @@ app.get('/dashboard', (req, res) => {
     res.redirect('/login');
   }
 });
+// Rute untuk halaman utama yang menampilkan posting
+app.get('/', (req, res) => {
+  // Query database untuk mengambil daftar posting
+  const query = 'SELECT * FROM blogs';
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.render('index', { posts: results });
+    }
+  });
+});
+// Rute untuk menampilkan dashboard posting
+app.get('/dashboard/posts', (req, res) => {
+  // Query database untuk mengambil daftar posting
+  const query = 'SELECT * FROM blogs';
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.render('dashboard-posts', { posts: results });
+    }
+  });
+});
+
+// Rute untuk menambahkan posting baru
+app.post('/dashboard/posts/create', (req, res) => {
+  const { title, content } = req.body;
+
+  // Tangani penambahan posting ke database (INSERT)
+  const query = 'INSERT INTO blogs (title, content) VALUES (?, ?)';
+  db.query(query, [title, content], (err, results) => {
+    if (err) {
+      console.error(err);
+    }
+    res.redirect('/dashboard/posts');
+  });
+});
+
+// Rute untuk mengedit posting
+app.get('/dashboard/posts/edit/:id', (req, res) => {
+  // Menampilkan formulir pengeditan posting berdasarkan ID
+  // Query database untuk mengambil posting yang akan diedit
+  // ...
+  // res.render('edit-post', { post: result });
+});
+
+app.post('/dashboard/posts/edit/:id', (req, res) => {
+  const postId = req.params.id;
+  const { title, content } = req.body;
+
+  // Tangani pengeditan posting di database (UPDATE)
+  // ...
+  res.redirect('/dashboard/posts');
+});
+
+// Rute untuk menghapus posting
+app.get('/dashboard/posts/delete/:id', (req, res) => {
+  const postId = req.params.id;
+
+  // Tangani penghapusan posting dari database (DELETE)
+  // ...
+  res.redirect('/dashboard/posts');
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

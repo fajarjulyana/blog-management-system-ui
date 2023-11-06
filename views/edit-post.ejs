@@ -1,0 +1,17 @@
+<!-- views/edit-post.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Posting</title>
+</head>
+<body>
+  <h1>Edit Posting</h1>
+  <form action="/dashboard/posts/edit/<%= post.id %>" method="post">
+    <label for="title">Judul:</label>
+    <input type="text" name="title" id="title" value="<%= post.title %>" required>
+    <label for="content">Isi:</label>
+    <textarea name="content" id="content" required><%= post.content %></textarea>
+    <button type="submit">Simpan Perubahan</button>
+  </form>
+</body>
+</html>

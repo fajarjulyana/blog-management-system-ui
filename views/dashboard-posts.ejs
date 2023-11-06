@@ -1,0 +1,33 @@
+<!-- views/dashboard-posts.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard Posting</title>
+</head>
+<body>
+  <h1>Dashboard Posting</h1>
+
+  <!-- Daftar Posting -->
+  <h2>Daftar Posting</h2>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <h3><%= post.title %></h3>
+        <p><%= post.content %></p>
+        <a href="/dashboard/posts/edit/<%= post.id %>">Edit</a> |
+        <a href="/dashboard/posts/delete/<%= post.id %>">Delete</a>
+      </li>
+    <% }); %>
+  </ul>
+
+  <!-- Formulir untuk Membuat Posting Baru -->
+  <h2>Tambah Posting Baru</h2>
+  <form action="/dashboard/posts/create" method="post">
+    <label for="title">Judul:</label>
+    <input type="text" name="title" id="title" required>
+    <label for="content">Isi:</label>
+    <textarea name="content" id="content" required></textarea>
+    <button type="submit">Tambah Posting</button>
+  </form>
+</body>
+</html>
