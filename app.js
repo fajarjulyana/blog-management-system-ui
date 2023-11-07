@@ -36,7 +36,7 @@ app.post('/login', (req, res) => {
     } else {
       if (results.length > 0) {
         req.session.user = username;
-        res.redirect('/dashboard');
+        res.redirect('/dashboard/posts');
       } else {
         res.redirect('/login');
       }
@@ -91,12 +91,19 @@ app.post('/dashboard/posts/create', (req, res) => {
   });
 });
 
-// Rute untuk mengedit posting
 app.get('/dashboard/posts/edit/:id', (req, res) => {
-  // Menampilkan formulir pengeditan posting berdasarkan ID
+  const postId = req.params.id;
+
   // Query database untuk mengambil posting yang akan diedit
-  // ...
-  // res.render('edit-post', { post: result });
+  const query = 'SELECT * FROM blogs WHERE id = ?';
+  db.query(query, [postId], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.redirect('/dashboard/posts');
+    } else {
+      res.render('edit-post', { post: result[0] }); // Ambil posting pertama dari hasil query
+    }
+  });
 });
 
 app.post('/dashboard/posts/edit/:id', (req, res) => {
@@ -104,17 +111,28 @@ app.post('/dashboard/posts/edit/:id', (req, res) => {
   const { title, content } = req.body;
 
   // Tangani pengeditan posting di database (UPDATE)
-  // ...
-  res.redirect('/dashboard/posts');
+  const query = 'UPDATE blogs SET title = ?, content = ? WHERE id = ?';
+  db.query(query, [title, content, postId], (err) => {
+    if (err) {
+      console.error(err);
+    }
+    res.redirect('/dashboard/posts');
+  });
 });
+
 
 // Rute untuk menghapus posting
 app.get('/dashboard/posts/delete/:id', (req, res) => {
   const postId = req.params.id;
 
   // Tangani penghapusan posting dari database (DELETE)
-  // ...
-  res.redirect('/dashboard/posts');
+  const query = 'DELETE FROM blogs WHERE id = ?';
+  db.query(query, [postId], (err) => {
+    if (err) {
+      console.error(err);
+    }
+    res.redirect('/dashboard/posts');
+  });
 });
 
 const port = process.env.PORT || 3000;
