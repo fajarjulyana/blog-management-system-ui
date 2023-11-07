@@ -52,3 +52,44 @@ body{
   font-size: 18px;
   color: #fafafa;
 }
+
+/* Tambahkan gaya untuk navbar */
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #555;
+}
+
+/* Tambahkan gaya untuk daftar postingan */
+.container ul {
+  list-style-type: none;
+}
+
+.container ul li {
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  margin: 10px 0;
+}
+
+.container ul li h3 {
+  color: #fafafa;
+  text-transform: uppercase;
+  border-bottom: 4px solid #2979ff;
+}
+
+.container ul li p {
+  color: #90caf9;
+}

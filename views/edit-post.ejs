@@ -1,17 +1,27 @@
-<!-- views/edit-post.ejs -->
 <!DOCTYPE html>
 <html>
 <head>
   <title>Edit Posting</title>
+  <!-- Tambahkan referensi Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <h1>Edit Posting</h1>
-  <form action="/dashboard/posts/edit/<%= post.id %>" method="post">
-    <label for="title">Judul:</label>
-    <input type="text" name="title" id="title" value="<%= post.title %>" required>
-    <label for="content">Isi:</label>
-    <textarea name="content" id="content" required><%= post.content %></textarea>
-    <button type="submit">Simpan Perubahan</button>
-  </form>
+  <div class="container">
+    <h1 class="mt-5">Edit Posting</h1>
+    <form action="/dashboard/posts/edit/<%= post.id %>" method="post">
+      <div class="form-group">
+        <label for="title">Judul:</label>
+        <input type="text" class="form-control" name="title" id="title" value="<%= post.title %>" required>
+      </div>
+      <div class="form-group">
+        <label for="content">Isi:</label>
+        <textarea class="form-control" name="content" id="content" required><%= post.content %></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+    </form>
+  </div>
+
+  <!-- Tambahkan referensi Bootstrap JavaScript (Jika Anda memerlukannya) -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

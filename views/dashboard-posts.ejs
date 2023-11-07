@@ -1,33 +1,83 @@
-<!-- views/dashboard-posts.ejs -->
 <!DOCTYPE html>
 <html>
 <head>
   <title>Dashboard Posting</title>
+  <!-- Tambahkan tautan ke file CSS Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <h1>Dashboard Posting</h1>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+      Dashboard Posting
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-  <!-- Daftar Posting -->
-  <h2>Daftar Posting</h2>
-  <ul>
-    <% posts.forEach(post => { %>
-      <li>
-        <h3><%= post.title %></h3>
-        <p><%= post.content %></p>
-        <a href="/dashboard/posts/edit/<%= post.id %>">Edit</a> |
-        <a href="/dashboard/posts/delete/<%= post.id %>">Delete</a>
-      </li>
-    <% }); %>
-  </ul>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Side Panel -->
+      <div class="col-md-3 bg-light">
+        <h3>Side Panel</h3>
+        <ul class="list-group">
+          <li class="list-group-item"><a href="#">Menu 1</a></li>
+          <li class="list-group-item"><a href="#">Menu 2</a></li>
+          <li class="list-group-item"><a href="#">Menu 3</a></li>
+        </ul>
+      </div>
+      <!-- Konten Utama -->
+      <div class="col-md-9">
+        <h1 class="mt-4">Dashboard Posting</h1>
 
-  <!-- Formulir untuk Membuat Posting Baru -->
-  <h2>Tambah Posting Baru</h2>
-  <form action="/dashboard/posts/create" method="post">
-    <label for="title">Judul:</label>
-    <input type="text" name="title" id="title" required>
-    <label for="content">Isi:</label>
-    <textarea name="content" id="content" required></textarea>
-    <button type="submit">Tambah Posting</button>
-  </form>
+        <!-- Daftar Posting -->
+        <h2>Daftar Posting</h2>
+        <ul class="list-group">
+          <% posts.forEach(post => { %>
+            <li class="list-group-item">
+              <h3><%= post.title %></h3>
+              <p><%= post.content %></p>
+              <a class="btn btn-primary" href="/dashboard/posts/edit/<%= post.id %>">Edit</a>
+              <a class="btn btn-danger" href="/dashboard/posts/delete/<%= post.id %>">Delete</a>
+            </li>
+          <% }); %>
+        </ul>
+
+        <!-- Formulir untuk Membuat Posting Baru -->
+        <h2 class="mt-4">Tambah Posting Baru</h2>
+        <form action="/dashboard/posts/create" method="post">
+          <div class="form-group">
+            <label for="title">Judul:</label>
+            <input type="text" class="form-control" name="title" id="title" required>
+          </div>
+          <div class="form-group">
+            <label for="content">Isi:</label>
+            <textarea class="form-control" name="content" id="content" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Tambah Posting</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tambahkan tautan ke file JavaScript Bootstrap (Opsional) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
