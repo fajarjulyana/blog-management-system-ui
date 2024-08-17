@@ -31,7 +31,7 @@ This is a simple Blog Management System built with Node.js, Express, EJS, and My
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/blog-management-system-ui.git
+   git clone https://github.com/fajarjulyana/blog-management-system-ui.git
    cd blog-management-system-ui
    ```
 
